@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mystic Dice Duel: Ocean vs. Forest</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="fx" aria-hidden="true"></div> <!-- polvillo de hadas -->
+
+  <main id="app">
+    <!-- COLUMNA IZQUIERDA: equipo Océano -->
+    <section class="col sea" aria-labelledby="t-sea">
+      <div class="bg" id="bg-sea"></div>
+      <!-- ============ 🌊 VIDEO DE FONDO DEL OCÉANO ============
+           👉 PEGA AQUÍ el link del video de este lado (en el atributo src de abajo).
+           • Debe ser un enlace DIRECTO a un archivo .mp4 o .webm  (ej: https://tu-sitio.com/ocean.mp4)
+           • O un archivo guardado en la MISMA carpeta que index.html:  ocean.mp4
+           • Los links de YouTube/Vimeo NO funcionan en <video>.
+           • Si el video no carga, se muestra la imagen de fondo automáticamente. -->
+      <video class="bgvid" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+        <source src="ocean.mp4" onerror="this.parentElement.style.display='none'"> <!-- ⬅️ CAMBIA ESTE LINK (OCÉANO) -->
+      </video>
+      <div class="decor" id="decor-sea" aria-hidden="true"></div>
+      <div class="inner">
+        <h2 id="t-sea"></h2>
+        <p class="rune" aria-hidden="true">ᛚ ᚨ ᚷ ᚢ ᚨ</p>
+        <ul id="list-sea"></ul>
+      </div>
+    </section>
+
+    <!-- CENTRO: registro, dados, resultado -->
+    <section class="center">
+      <h1>Mystic Dice Duel<br>Ocean vs. Forest</h1>
+
+      <div class="panel">
+        <label for="name">Add one student</label>
+        <input id="name" type="text" maxlength="30" autocomplete="off" placeholder="e.g. Camila">
+        <select id="faction" aria-label="Team"></select>
+        <button id="add" class="btn" type="button">Add student</button>
+      </div>
+
+      <div class="panel">
+        <label for="bulk">Add many students (one per line or separated by commas)</label>
+        <textarea id="bulk" rows="4" placeholder="Ana&#10;Luis&#10;Marta, Pedro, Sofía"></textarea>
+        <button id="split" class="btn" type="button">🎲 Split randomly into both teams</button>
+        <div class="row">
+          <button id="reshuffle" class="btn ghost" type="button">🔀 Re-shuffle teams</button>
+          <button id="clear" class="btn ghost" type="button">🗑 Clear all</button>
+        </div>
+      </div>
+
+      <details class="panel">
+        <summary>🖼️ Team background images</summary>
+        <label for="img-sea">Ocean background</label>
+        <input id="img-sea" type="file" accept="image/*">
+        <label for="img-forest">Forest background</label>
+        <input id="img-forest" type="file" accept="image/*">
+      </details>
+
+      <div id="alert" role="alert"></div>
+      <button id="roll" class="btn" type="button">ROLL</button>
+
+      <div class="arena">
+        <div class="dwrap left" id="w-sea">
+          <div class="dname" id="n-sea">—</div>
+          <div class="scene"><div class="tilt"><div class="die" id="d-sea"></div></div></div>
+          <div class="score" id="s-sea"></div>
+        </div>
+        <div class="dwrap right" id="w-forest">
+          <div class="dname" id="n-forest">—</div>
+          <div class="scene"><div class="tilt"><div class="die" id="d-forest"></div></div></div>
+          <div class="score" id="s-forest"></div>
+        </div>
+      </div>
+
+      <div id="result" aria-live="polite">Add students to both teams, then roll the dice.</div>
+      <ul id="history" aria-label="Duel history"></ul>
+    </section>
+
+    <!-- COLUMNA DERECHA: equipo Bosque -->
+    <section class="col forest" aria-labelledby="t-forest">
+      <div class="bg" id="bg-forest"></div>
+      <!-- ============ 🌲 VIDEO DE FONDO DEL BOSQUE ============
+           👉 PEGA AQUÍ el link del video de este lado (en el atributo src de abajo).
+           • Debe ser un enlace DIRECTO a un archivo .mp4 o .webm  (ej: https://tu-sitio.com/forest.mp4)
+           • O un archivo guardado en la MISMA carpeta que index.html:  forest.mp4
+           • Los links de YouTube/Vimeo NO funcionan en <video>.
+           • Si el video no carga, se muestra la imagen de fondo automáticamente. -->
+      <video class="bgvid" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+        <source src="forest.mp4" onerror="this.parentElement.style.display='none'"> <!-- ⬅️ CAMBIA ESTE LINK (BOSQUE) -->
+      </video>
+      <div class="decor" id="decor-forest" aria-hidden="true"></div>
+      <div class="inner">
+        <h2 id="t-forest"></h2>
+        <p class="rune" aria-hidden="true">✧ ᚠ ᛉ ᛟ ✧</p>
+        <ul id="list-forest"></ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- ALERTA DE GANADOR -->
+  <div id="winner" class="overlay" hidden>
+    <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="w-team">
+      <div id="w-emoji" aria-hidden="true"></div>
+      <p class="win-title">🏆 WINNER 🏆</p>
+      <h3 id="w-team"></h3>
+      <p class="champ">Champion: <b id="w-student"></b></p>
+      <p id="w-score"></p>
+      <p class="motto" id="w-motto"></p>
+      <p class="elem">Element: <b id="w-element"></b></p>
+      <ul class="traits" id="w-traits"></ul>
+      <button id="w-close" class="btn" type="button">Continue</button>
+    </div>
+  </div>
+
+  <button id="audio" type="button" aria-label="Toggle sound" title="Sound">🔇</button>
+  <script src="script.js"></script>
+</body>
+</html>

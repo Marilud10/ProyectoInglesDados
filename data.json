@@ -1,0 +1,20 @@
+{
+  "config": { "maxHistory": 6, "rollDurationMs": 2200 },
+  "teams": {
+    "sea": {
+      "name": "Ocean Tribe", "emoji": "🌊", "element": "Water",
+      "motto": "Deep as the tide, mighty as the storm.",
+      "traits": ["Calm under pressure", "Ancient wisdom", "Unstoppable currents"],
+      "background": "ocean.png",
+      "students": []
+    },
+    "forest": {
+      "name": "Forest Fae", "emoji": "🌲", "element": "Nature & Magic",
+      "motto": "Where moonlight sleeps, magic wakes.",
+      "traits": ["Wild creativity", "Fairy-fast reflexes", "Roots that never break"],
+      "background": "forest.png",
+      "students": []
+    }
+  },
+  "duels": []
+}
